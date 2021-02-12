@@ -18,13 +18,11 @@
   under the License.
 -->
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-archive-zip" version="2.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="vault12.plugin-archive-zip" version="2.0.1">
     <name>Zip archive</name>
     <description>Cordova zip archive plugin with multipart support</description>
     <license>Apache 2.0</license>
     <keywords>cordova,zip,archive,plugin,native,android,ios,multipart</keywords>
-    <repo>https://github.com/kitolog/cordova-plugin-zip-archive</repo>
-    <issue>https://github.com/kitolog/cordova-plugin-zip-archive</issue>
 
     <engines>
         <engine name="cordova-android" version=">=3.6.0"/><!-- Requires CordovaPlugin.preferences -->
