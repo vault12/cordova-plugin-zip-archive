@@ -23,3 +23,12 @@ interface NativeTimerError {
     /** Error code */
     code: number;
 }
+interface ZipArchive {
+    onError: (message: string) => void;
+    zip(path: string, files: string[], options: {maxSize?: number}, success: () => void, error: (err: any) => void): void;
+    on(event: 'progress'|'finish'|'error', callback: (e: any) => {}): ZipArchive
+}
+
+declare interface Window {
+    zipArchive: {new(...args: any[]): ZipArchive };
+}

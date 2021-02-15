@@ -18,7 +18,7 @@
   under the License.
 -->
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="vault12.plugin-archive-zip" version="2.0.1">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="vault12.plugin-archive-zip" version="2.0.2">
     <name>Zip archive</name>
     <description>Cordova zip archive plugin with multipart support</description>
     <license>Apache 2.0</license>
@@ -66,7 +66,7 @@
                 <source url="https://github.com/CocoaPods/Specs.git" />
             </config>
             <pods use-frameworks="true">
-                <pod name="SSZipArchive" git="https://github.com/kitolog/ZipArchive" branch="master" />
+                <pod name="SSZipArchive" git="https://github.com/kitolog/ZipArchive" branch="master" commit="0f638a9e941b5638137237a6b84691bd2044d56a" />
             </pods>
         </podspec>
 
