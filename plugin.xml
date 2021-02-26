@@ -18,7 +18,7 @@
   under the License.
 -->
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="vault12.plugin-archive-zip" version="2.0.2">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="vault12.plugin-archive-zip" version="2.0.3">
     <name>Zip archive</name>
     <description>Cordova zip archive plugin with multipart support</description>
     <license>Apache 2.0</license>
@@ -48,7 +48,6 @@
         <source-file src="src/android/ZipArchivePlugin.java" target-dir="src/com/hqsoftwarelab/ziparchive"/>
         <source-file src="src/android/Consumer.java" target-dir="src/com/hqsoftwarelab/ziparchive"/>
 
-        <source-file src="src/android/net/lingala/zip4j" target-dir="src/main/java/net/lingala"/>
     </platform>
 
     <!-- ios -->

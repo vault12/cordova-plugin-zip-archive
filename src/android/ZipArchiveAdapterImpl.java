@@ -20,6 +20,8 @@ package com.hqsoftwarelab.ziparchive;
 import android.os.Handler;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,10 +30,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.ZipParameters;
 
 public class ZipArchiveAdapterImpl implements ZipArchiveAdapter {
 
@@ -50,7 +48,7 @@ public class ZipArchiveAdapterImpl implements ZipArchiveAdapter {
     public ZipArchiveAdapterImpl() {
     }
 
-    private static int BUFFER_SIZE = 6 * 1024;
+    private static int BUFFER_SIZE = 100 * 1024;
 
     @Override
     public void zip(String zipFilePath, ArrayList<String> filesList, float maxSize) throws IOException {
@@ -89,28 +87,43 @@ public class ZipArchiveAdapterImpl implements ZipArchiveAdapter {
                     }
 
                 }
-
-
             }
 
-            ArrayList<File> preparedFilesList = new ArrayList<File>();
-            for (String filePath : filesList) {
-                filePath = filePath.replace("file:///", "/");
-                preparedFilesList.add(new File(filePath));
-            }
+            String[] preparedFiles = new String[filesList.size()];
+            preparedFiles = filesList.toArray(preparedFiles);
 
-            int fileSize = Math.round(maxSize * 1024 * 1024);
-            ZipFile zipFile = new ZipFile(file);
-            zipFile.createSplitZipFile(preparedFilesList, new ZipParameters(), true, fileSize); // using 10MB in this example
+            zipFilesList(preparedFiles, zipFilePath);
+
             invokeZipEventHandler(zipFilePath);
-        } catch (ZipException e) {
-            e.printStackTrace();
-            invokeExceptionHandler(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
             invokeExceptionHandler(e.getMessage());
         }
     }
+
+    private void zipFilesList(String[] _files, String zipFileName) throws IOException {
+        BufferedInputStream origin = null;
+        FileOutputStream dest = new FileOutputStream(zipFileName);
+        ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
+                dest));
+        byte data[] = new byte[BUFFER_SIZE];
+
+        for (int i = 0; i < _files.length; i++) {
+            FileInputStream fi = new FileInputStream(_files[i]);
+            origin = new BufferedInputStream(fi, BUFFER_SIZE);
+
+            ZipEntry entry = new ZipEntry(_files[i].substring(_files[i].lastIndexOf("/") + 1));
+            out.putNextEntry(entry);
+            int count;
+
+            while ((count = origin.read(data, 0, BUFFER_SIZE)) != -1) {
+                out.write(data, 0, count);
+            }
+            origin.close();
+        }
+        out.close();
+    }
+
 
     @Override
     public void stop() {
