@@ -18,15 +18,11 @@
   under the License.
 -->
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-archive-zip" version="2.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="vault12.plugin-archive-zip" version="2.0.3">
     <name>Zip archive</name>
     <description>Cordova zip archive plugin with multipart support</description>
     <license>Apache 2.0</license>
     <keywords>cordova,zip,archive,plugin,native,android,ios,multipart</keywords>
-    <repo>https://github.com/kitolog/cordova-plugin-zip-archive</repo>
-    <issue>https://github.com/kitolog/cordova-plugin-zip-archive</issue>
-
-    <dependency id="cordova-plugin-cocoapod-support"/>
 
     <engines>
         <engine name="cordova-android" version=">=3.6.0"/><!-- Requires CordovaPlugin.preferences -->
@@ -52,7 +48,6 @@
         <source-file src="src/android/ZipArchivePlugin.java" target-dir="src/com/hqsoftwarelab/ziparchive"/>
         <source-file src="src/android/Consumer.java" target-dir="src/com/hqsoftwarelab/ziparchive"/>
 
-        <source-file src="src/android/net/lingala/zip4j" target-dir="src/main/java/net/lingala"/>
     </platform>
 
     <!-- ios -->
@@ -65,7 +60,14 @@
         </config-file>
 
 <!--        <framework src="SSZipArchive" type="podspec" spec="~> 2.2.3" />-->
-        <pod name="SSZipArchive" git="https://github.com/kitolog/ZipArchive" branch="master" />
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git" />
+            </config>
+            <pods use-frameworks="true">
+                <pod name="SSZipArchive" git="https://github.com/kitolog/ZipArchive" branch="master" commit="0f638a9e941b5638137237a6b84691bd2044d56a" />
+            </pods>
+        </podspec>
 
         <header-file src="src/ios/ZipArchiveAdapter.h"/>
         <source-file src="src/ios/ZipArchiveAdapter.m"/>

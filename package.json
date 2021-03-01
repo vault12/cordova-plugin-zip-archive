@@ -1,10 +1,10 @@
 {
-  "name": "cordova-plugin-archive-zip",
-  "version": "2.0.0",
+  "name": "@vault12/plugin-archive-zip",
+  "version": "2.0.3",
   "description": "Cordova Zip archive plugin with multipart support",
   "types": "./types/index.d.ts",
   "cordova": {
-    "id": "cordova-plugin-archive-zip",
+    "id": "vault12-archive-zip",
     "platforms": [
       "android",
       "ios"
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kitolog/cordova-plugin-zip-archive"
+    "url": "git@github.com:vault12/cordova-plugin-zip-archive.git"
   },
   "bugs": {
-    "url": "https://github.com/kitolog/cordova-plugin-zip-archive"
+    "url": "https://github.com/vault12/cordova-plugin-zip-archive"
   },
   "keywords": [
     "cordova",
@@ -52,6 +52,7 @@
   "license": "Apache-2.0",
   "dependencies": {},
   "devDependencies": {
-    "jshint": "^2.6.0"
+    "jshint": "^2.6.0",
+    "typescript": "^4.1.4"
   }
 }
